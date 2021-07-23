@@ -1,6 +1,6 @@
 [
   {
-    "img": "images/J_Busby.png",
+    "img": "client/images/cadium-images/J_Busby.png",
     "date": "May 13, 2021",
     "title": "Group Show: Day Trip",
     "locationName": "Reynolds Gallery",
@@ -11,7 +11,7 @@
     "contributor": "Casey"
   },
   {
-    "img": "images/C_Criddle.png",
+    "img": "client/images/cadium-images/C_Criddle.png",
     "date": "2021-06-4",
     "title": "Casey Criddle: Life Pursuits",
     "locationName": "Eden Airlines",
@@ -22,7 +22,7 @@
     "contributor": "Casey"
   },
   {
-    "img": "images/R_McMillian.png",
+    "img": "client/images/cadium-images/R_McMillian.png",
     "date": "2021-05-22",
     "title": "Group Show: The Dirty South - Contemporary Art, Material Culture, and the Sonic Impulse",
     "locationName": "Virginia Museum of Fine Art",
@@ -33,7 +33,7 @@
     "contributor": "Sal"
   },
   {
-    "img": "images/D_Horvitz.png",
+    "img": "client/images/cadium-images/D_Horvitz.png",
     "date": "2021-07-2",
     "title": "David Horvitz: (in all its different manifestations)",
     "locationName": "1708 Gallery",
@@ -44,7 +44,7 @@
     "contributor": "Catherine"
   },
   {
-    "img": "images/S_Masuda.png",
+    "img": "client/images/cadium-images/S_Masuda.png",
     "date": "2021-05-7",
     "title": "Shinya Masuda: Hanafuda Shouzoku",
     "locationName": "Candela Gallery",
@@ -55,7 +55,7 @@
     "contributor": "Seth"
   },
   {
-    "img": "images/A_Kaus.png",
+    "img": "client/images/cadium-images/A_Kaus.png",
     "date": "2021-06-03",
     "title": "Alec Kaus: Haunts and Related Incidents",
     "locationName": "Black Iris Gallery",
@@ -66,7 +66,7 @@
     "contributor": "Erick"
   },
   {
-    "img": "images/M_Carter_Fisher.png",
+    "img": "client/images/cadium-images/M_Carter_Fisher.png",
     "date": "2021-06-11",
     "title": "Miguel Carter-Fisher: Negative Shapes",
     "locationName": "Eric Schindler Gallery",
@@ -77,7 +77,7 @@
     "contributor": "Casey"
   },
   {
-    "img": "images/H_Mendez.png",
+    "img": "client/images/cadium-images/H_Mendez.png",
     "date": "2021-05-12",
     "title": "Harold Mendez: Let us gather in a flourishing way",
     "locationName": "Institute for Contemporary Art",
@@ -88,7 +88,7 @@
     "contributor": "Casey"
   },
   {
-    "img": "images/J_Collins.png",
+    "img": "client/images/cadium-images/J_Collins.png",
     "date":"2021-05-6",
     "title": "Jeanie Collin Keys & Andrea Keys Connel: The Apple and the Treet",
     "locationName": "Quirk Gallery",
