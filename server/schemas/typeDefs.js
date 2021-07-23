@@ -6,13 +6,15 @@ const typeDefs = gql`
     name: String
   }
 
-  type Product {
+  type Event {
     _id: ID
-    name: String
+    title: String!
     description: String
+    locationName: String!
+    locationAddress: String!
+    time: String!
     image: String
-    quantity: Int
-    price: Float
+    link: String
     category: Category
   }
 
@@ -24,8 +26,8 @@ const typeDefs = gql`
 
   type User {
     _id: ID
+    username: String
     firstName: String
-    lastName: String
     email: String
     orders: [Order]
   }

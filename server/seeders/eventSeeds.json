@@ -1,0 +1,101 @@
+[
+  {
+    "img": "images/J_Busby.png",
+    "date": "May 13, 2021",
+    "title": "Group Show: Day Trip",
+    "locationName": "Reynolds Gallery",
+    "locationAddress": "1514 West Main Street",
+    "description": "Painting and Prints",
+    "time": 430,
+    "link": "https://www.reynoldsgallery.com/",
+    "contributor": "Casey"
+  },
+  {
+    "img": "images/C_Criddle.png",
+    "date": "2021-06-4",
+    "title": "Casey Criddle: Life Pursuits",
+    "locationName": "Eden Airlines",
+    "locationAddress": "214 East Grace Street",
+    "description": "Paintings",
+    "time": 600,
+    "link":  "https://edenairlines.com/",
+    "contributor": "Casey"
+  },
+  {
+    "img": "images/R_McMillian.png",
+    "date": "2021-05-22",
+    "title": "Group Show: The Dirty South - Contemporary Art, Material Culture, and the Sonic Impulse",
+    "locationName": "Virginia Museum of Fine Art",
+    "locationAddress": "200 North Arthur Ashe Boulevard",
+    "description": "Mixed Media",
+    "time": 430,
+    "link":  "https://www.vmfa.museum",
+    "contributor": "Sal"
+  },
+  {
+    "img": "images/D_Horvitz.png",
+    "date": "2021-07-2",
+    "title": "David Horvitz: (in all its different manifestations)",
+    "locationName": "1708 Gallery",
+    "locationAddress": "319 West Broad Street",
+    "description": "Mixed Media",
+    "time": 1900,
+    "link": "https://1708gallery.org/",
+    "contributor": "Catherine"
+  },
+  {
+    "img": "images/S_Masuda.png",
+    "date": "2021-05-7",
+    "title": "Shinya Masuda: Hanafuda Shouzoku",
+    "locationName": "Candela Gallery",
+    "locationAddress": "214 West Broad Street",
+    "description": "Mixed Media",
+    "time": 1430,
+    "link":  "https://www.candelagallery.com/",
+    "contributor": "Seth"
+  },
+  {
+    "img": "images/A_Kaus.png",
+    "date": "2021-06-03",
+    "title": "Alec Kaus: Haunts and Related Incidents",
+    "locationName": "Black Iris Gallery",
+    "locationAddress": "321 West Broad Street",
+    "description": "Photography",
+    "time": 1930,
+    "link":  "http://www.321westbroad.com/",
+    "contributor": "Erick"
+  },
+  {
+    "img": "images/M_Carter_Fisher.png",
+    "date": "2021-06-11",
+    "title": "Miguel Carter-Fisher: Negative Shapes",
+    "locationName": "Eric Schindler Gallery",
+    "locationAddress": "2305 East Broad Street",
+    "description": "Painting",
+    "time": 430,
+    "link":  "https://www.ericschindlergallery.com/news-exhibitions",
+    "contributor": "Casey"
+  },
+  {
+    "img": "images/H_Mendez.png",
+    "date": "2021-05-12",
+    "title": "Harold Mendez: Let us gather in a flourishing way",
+    "locationName": "Institute for Contemporary Art",
+    "locationAddress": "601 West Broad Street",
+    "description": "Artist Talk",
+    "time": 600,
+    "link":  "https://icavcu.org/exhibition/",
+    "contributor": "Casey"
+  },
+  {
+    "img": "images/J_Collins.png",
+    "date":"2021-05-6",
+    "title": "Jeanie Collin Keys & Andrea Keys Connel: The Apple and the Treet",
+    "locationName": "Quirk Gallery",
+    "locationAddress": "207 West Broad Street",
+    "description": "Ceramics ",
+   "time": 430,
+    "link":  "https://www.quirkgallery.com/exhibitions",
+    "contributor": "Casey"
+  }
+  ]
