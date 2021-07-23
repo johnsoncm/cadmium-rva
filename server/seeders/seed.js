@@ -6,14 +6,14 @@ const eventSeeds = require('./eventSeeds.json');
 
 db.once('open', async () => {
   try {
-    // wait we don't want to use the deleteMany() method, do we?
+    // wait do we want to use the deleteMany() method? Is this just deleting existing if it's there? (to make room for this new db)
     await Event.deleteMany({});
     await User.deleteMany({});
 
     await User.create(userSeeds);
 
     // this is when it was with thoughts - thoughtAuthor and thoughtText - reconfigure to work for our events
-    for (let i = 0; i < eventSeeds.length; i++) {
+    for (let i = 0; i < eventSeedßs.length; i++) {
       const { _id, eventAuthor } = await Event.create(eventSeeds[i]);
       const user = await User.findOneAndUpdate(
         { username: eventAuthor },

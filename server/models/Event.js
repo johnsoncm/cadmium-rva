@@ -12,6 +12,12 @@ const eventSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
     required: true
   },
+  time: {
+    // UPDATE to correct format - maybe do something similar to Date?
+    // Actually, might not need - timestamp should show date and time down to the millisecond
+    type: DataTypes.TIME,
+    defaultValue: DataTypes.NOW,
+  },
   title: {
     type: String,
     required: true,
@@ -28,12 +34,7 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-  time: {
-    // UPDATE to correct format - maybe do something similar to Date?
-    // Actually, might not need - timestamp should show date and time down to the millisecond
-    type: DataTypes.TIME,
-    defaultValue: DataTypes.NOW,
-  },
+
   image: {
     type: String,
     default: defaultImage
