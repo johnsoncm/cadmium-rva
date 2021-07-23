@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const defaultImage = '';
+
+const defaultImage = '../client/public/images/cadmium-images/cadmiumCircle.png';
 
 const eventSchema = new Schema({
   date: {

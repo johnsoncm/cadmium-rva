@@ -1,9 +1,10 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+# cateogry is day of the week?
   type Category {
     _id: ID
-    name: String
+    day: String
   }
 
   type Event {
@@ -18,10 +19,10 @@ const typeDefs = gql`
     category: Category
   }
 
-  type Order {
+  type List {
     _id: ID
-    purchaseDate: String
-    products: [Product]
+    savedDate: String
+    events: [Event]
   }
 
   type User {
@@ -29,7 +30,7 @@ const typeDefs = gql`
     username: String
     firstName: String
     email: String
-    orders: [Order]
+    lists: [List]
   }
 
   type Checkout {
@@ -43,18 +44,19 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    events(category: ID, name: String): [Event]
+    event(_id: ID!): Product
     user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    list(_id: ID!): List
+    # we don't need checkout but maybe we can still play with this
+    checkout(events: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addList(events: [ID]!): List
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    updateList(_id: ID!): Event
     login(email: String!, password: String!): Auth
   }
 `;
