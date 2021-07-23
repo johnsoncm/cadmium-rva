@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const defaultImage = '';
 
 const eventSchema = new Schema({
   date: {
+    // timestamp includes date?
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
@@ -27,11 +29,13 @@ const eventSchema = new Schema({
   },
   time: {
     // UPDATE to correct format - maybe do something similar to Date?
+    // Actually, might not need - timestamp should show date and time down to the millisecond
     type: DataTypes.TIME,
     defaultValue: DataTypes.NOW,
   },
   image: {
-    type: String
+    type: String,
+    default: defaultImage
   },
   link: {
     type: String
