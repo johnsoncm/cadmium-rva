@@ -13,7 +13,7 @@ db.once('open', async () => {
     await User.create(userSeeds);
 
     // this is when it was with thoughts - thoughtAuthor and thoughtText - reconfigure to work for our events
-    for (let i = 0; i < eventSeedßs.length; i++) {
+    for (let i = 0; i < eventSeeds.length; i++) {
       const { _id, eventAuthor } = await Event.create(eventSeeds[i]);
       const user = await User.findOneAndUpdate(
         { username: eventAuthor },
