@@ -18,7 +18,7 @@ const eventSchema = new Schema({
     // type: DataTypes.TIME,
     // defaultValue: DataTypes.NOW,
   },
-  title: {
+  name: {
     type: String,
     required: true,
     trim: true
