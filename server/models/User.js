@@ -2,15 +2,17 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+const List = require('./List');
 
 const userSchema = new Schema({
-  firstName: {
+  username: {
     type: String,
     required: true,
+    unique: true,
     trim: true
   },
-  lastName: {
+  // Added firstName object so we could use this as their greeting if we like - could edit out so it is just username
+  firstName: {
     type: String,
     required: true,
     trim: true
@@ -18,14 +20,18 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true,
+    // regex for validation
+    match: [/.+@.+\..+/, 'Please enter a valid email address'],
   },
   password: {
     type: String,
     required: true,
-    minlength: 5
+    trim: true,
+    minlength: 8
   },
-  orders: [Order.schema]
+  lists: [List.schema]
 });
 
 // set up pre-save middleware to create password
