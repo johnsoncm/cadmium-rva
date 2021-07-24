@@ -16,9 +16,9 @@ const Home = () => {
       {/* <CategoryMenu />
       <ProductList />
       <Cart /> */}
+    
 
-      <h1>Hello</h1>
-      <img src={Image} alt="logo"/>
+
 
     </div>
   );
