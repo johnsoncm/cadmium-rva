@@ -80,7 +80,7 @@ db.once('open', async () => {
       description:
         'Art, food, music, bar, and more! Exhibit runs September 17, 2021 to November 7, 2021. $12 per piece for non-members, $9 for members',
       // NO IMAGE
-      image: 'wooden-spoons.jpg',
+      image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '9pm',
       date: '2021-09-17',
@@ -94,7 +94,7 @@ db.once('open', async () => {
       description:
         'Art, food, music, bar, and more! Exhibit runs November 17, 2021 to January 9, 2022. $12 per piece for non-members, $9 for members',
       // NO IMAGE
-      image: 'wooden-spoons.jpg',
+      image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '9pm',
       date: '2021-11-19',
