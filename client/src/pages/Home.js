@@ -2,7 +2,8 @@ import React from "react";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
-import Image from '../images/cadmium-images/logo.png'
+import Image from '../images/cadmium-images/logo.png';
+import { Link } from 'react-router-dom';
 
 const styles = {
   backgroundStyle:{
@@ -12,13 +13,24 @@ const styles = {
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="container" >
       {/* <CategoryMenu />
       <ProductList />
       <Cart /> */}
 
-      <h1>Hello</h1>
+
       <img src={Image} alt="logo"/>
+
+      <div className="container my-1">
+      <Link to="/signup">← Go to Signup</Link>
+
+      <h2>Login</h2>
+      </div>
+      <div className="container my-1">
+      <Link to="/login">← Go to Login</Link>
+
+      <h2>Signup</h2>
+      </div>
 
     </div>
   );

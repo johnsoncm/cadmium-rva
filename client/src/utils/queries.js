@@ -1,3 +1,7 @@
+//change queries from products to events based on events model that CRS wrote
+//need to think through checkout/categories and how to convert/adapt or delete
+//user query and model should be fine
+
 import { gql } from '@apollo/client';
 
 export const QUERY_PRODUCTS = gql`

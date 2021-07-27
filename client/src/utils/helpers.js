@@ -4,12 +4,7 @@
 // import "react-datepicker/dist/react-datepicker.css";
 
 
-// export default function datePicker () {
-//   const [startDate, setStartDate] = useState(new Date());
-//   return(
-//     <DatePicker selected={startDate} onChange={(date) => setStartDate(date)}/>
-//   );
-// };
+
 
 
 export function pluralize(name, count) {
