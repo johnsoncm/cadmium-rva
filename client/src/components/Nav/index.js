@@ -36,6 +36,11 @@ function Nav() {
               Login
             </Link>
           </li>
+          <li className="mx-1">
+            <Link to="/eventForm">
+             Add an Event!
+            </Link>
+          </li>
         </ul>
       );
     }

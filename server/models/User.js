@@ -11,12 +11,6 @@ const userSchema = new Schema({
     unique: true,
     trim: true
   },
-  // Added firstName object so we could use this as their greeting if we like - could edit out so it is just username
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
-  },
   email: {
     type: String,
     required: true,
