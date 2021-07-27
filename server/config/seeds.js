@@ -179,7 +179,7 @@ db.once('open', async () => {
       password: "password12345",
       events: [
         {
-          events: [events[2]._id, events[3]._id]
+          events: [events[2]._id, events[3]._id, events[8]._id]
         }
       ]
     },
@@ -189,7 +189,7 @@ db.once('open', async () => {
       password: "password12345",
       events: [
         {
-          events: [events[4]._id]
+          events: [events[4]._id, events[5]._id, events[7]._id]
         }
       ]
     },
@@ -197,11 +197,21 @@ db.once('open', async () => {
       username: "Seth",
       email: "seth@gmail.com",
       password: "password12345",
+      events: [
+        {
+          events: [events[5]._id]
+        }
+      ]
     },
     {
       username: "Erick",
       email: "erick@gmail.com",
-      password: "password12345"
+      password: "password12345",
+      events: [
+        {
+          events: [events[6]._id]
+        }
+      ]
     }
   ]);
 
