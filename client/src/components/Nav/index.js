@@ -2,6 +2,8 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
+
+
 function Nav() {
 
   function showNavigation() {
@@ -34,6 +36,11 @@ function Nav() {
               Login
             </Link>
           </li>
+          <li className="mx-1">
+            <Link to="/eventForm">
+             Add an Event!
+            </Link>
+          </li>
         </ul>
       );
     }
@@ -43,8 +50,9 @@ function Nav() {
     <header className="flex-row px-1">
       <h1>
         <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
+          <span role="img" aria-label="cadmium logo"></span>
+          <a href="./public/images/cadmium-images/logo.png"></a>
+          Cadmium
         </Link>
       </h1>
 

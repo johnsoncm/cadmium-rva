@@ -7,8 +7,10 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import 'semantic-ui-css/semantic.min.css';
 
 import Home from './pages/Home';
+import FormExampleFieldControl from './pages/EventForm';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -17,6 +19,7 @@ import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import Map from './components/Map/Map';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -50,7 +53,9 @@ function App() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
+              <Route exact path="/map" component={Map} />
               <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/eventForm" component={FormExampleFieldControl} />
               <Route component={NoMatch} />
             </Switch>
           </StoreProvider>

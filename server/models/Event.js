@@ -15,8 +15,8 @@ const eventSchema = new Schema({
   time: {
     // UPDATE to correct format - maybe do something similar to Date?
     // Actually, might not need - timestamp should show date and time down to the millisecond
-    type: DataTypes.TIME,
-    defaultValue: DataTypes.NOW,
+    // type: DataTypes.TIME,
+    // defaultValue: DataTypes.NOW,
   },
   name: {
     type: String,
