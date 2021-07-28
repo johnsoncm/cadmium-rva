@@ -54,11 +54,12 @@ function FormExampleFieldControl() {
           />
           <Form.Input
             label="Address 2"
-            placeholder="Building, Suite or Apt. Number"
+            // placeholder="Building, Suite or Apt. Number"
             width={8}
           />
           <Form.Input label="City" placeholder="City" width={8} />
           <Form.Input label="State" placeholder="State" width={8} />
+          <Form.Input label="Zip" placeholder="Zip" width={8} />
         </Form.Group>
         <Form.Group>
           <Form.Field>
@@ -94,28 +95,3 @@ function FormExampleFieldControl() {
 }
 
 export default FormExampleFieldControl;
-
-// import React from "react";
-// import ProductList from "../components/ProductList";
-// import CategoryMenu from "../components/CategoryMenu";
-// import Cart from "../components/Cart";
-// import Image from '../images/cadmium-images/logo.png'
-
-// const styles = {
-//   backgroundStyle:{
-//     backgroundImage: ''
-//   }
-// }
-
-// const Home = () => {
-//   return (
-//     <div className="container">
-//       {/* <CategoryMenu />
-//       <ProductList />
-//       <Cart /> */}
-
-//     </div>
-//   );
-// };
-
-// export default Home;
