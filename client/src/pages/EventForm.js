@@ -12,7 +12,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import datePicker from "../utils/helpers";
+// import datePicker from "../utils/helpers";
 
 const options = [
   { key: "g", text: "Gallery/Museum Opening", value: "gallery/museum opening" },
@@ -24,17 +24,24 @@ const options = [
 
 function FormExampleFieldControl() {
   const [dateValue, setDateValue] = useState("");
-
+  const [formState, setFormState] = useState({});
+  const handleChange = (e)=> {
+    
+  }
   return (
     <div className="form-container">
       <Form>
         <Form.Group widths="equal">
           <Form.Field
+            onChange={(e) => {
+              console.log(e.target.value);
+            }}
             control={Input}
             label="Event Name"
             placeholder="Event Name"
           />
           <Form.Field
+          
             control={Input}
             label="Location Name"
             placeholder="Location Name"
