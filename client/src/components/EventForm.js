@@ -8,27 +8,8 @@ import { QUERY_EVENTS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const EventForm = () => {
-    const [eventText, setEventText] = useState('');
-    const [addEvent, { error }] = useMutation(ADD_EVENT, {
-        update(cache, {data: { addEvent }}) {
-            try{
-                const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
-                cache.writeQuery({
-                    query: QUERY_EVENTS,
-                    data: { events: [addEvent, ...events]},
-                });
-            }catch (e) {
-                console.error(e);
-            }
-
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: {...me, events: [...me.events, addEvent]}},
-            });
-        },
-    });
+  
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();

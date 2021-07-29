@@ -32,6 +32,11 @@ body {
   
 }
 
+.list-decoration{
+ list-style-type: none;
+ 
+}
+
 .date-picker{
   width: 200px;
 }

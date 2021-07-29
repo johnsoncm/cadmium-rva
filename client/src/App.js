@@ -16,7 +16,7 @@ import "semantic-ui-css/semantic.min.css";
 
 import Home from "./pages/Home";
 import FormExampleFieldControl from "./pages/EventForm";
-import EventList from "./components/EventList";
+import EventList from "./components/ProductList";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
@@ -48,7 +48,8 @@ const client = new ApolloClient({
 
 const WithAuth = ({ children }) => {
   const history = useHistory();
-  const isLoggedIn = localStorage.getItem('id_token'); //here you would check for the token
+  const isLoggedIn = true;
+  // localStorage.getItem('id_token'); //here you would check for the token
   if (!isLoggedIn) {
     history.push("/login");
     return <div>You are not authorized to view this page.</div>;
@@ -64,8 +65,11 @@ function App() {
       <Router>
         <div>
           <StoreProvider>
+            <WithAuth>
             <Nav />
+            </WithAuth>
             <Switch>
+         
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
@@ -77,13 +81,19 @@ function App() {
                 </WithAuth>
               </Route>
               <Route exact path="/products/:id" component={Detail} />
-              <Route
-                exact
-                path="/eventForm"
-                component={FormExampleFieldControl}
-              />
+              <Route exact path="/eventForm" component={FormExampleFieldControl}/>
+               
+                               
+                {/* <WithAuth>
+                  <FormExampleFieldControl/>
+                </WithAuth> */}
+
               {/* <Route exact path="/events" component={EventList} /> */}
-              <Route component={NoMatch} />
+ 
+              <Route exact path="/events" component={EventList}/>
+                {/* <EventList/> */}
+                <Route component={NoMatch} />
+        
             </Switch>
           </StoreProvider>
         </div>

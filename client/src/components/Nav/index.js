@@ -25,7 +25,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
+        <ul className="flex-row list-decoration">
           <li className="mx-1">
             <Link to="/signup">
               Signup
@@ -39,6 +39,11 @@ function Nav() {
           <li className="mx-1">
             <Link to="/eventForm">
              Add an Event!
+            </Link>
+          </li>
+          <li>
+          <Link to="/events">
+             Events
             </Link>
           </li>
         </ul>

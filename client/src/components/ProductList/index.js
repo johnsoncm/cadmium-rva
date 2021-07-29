@@ -1,70 +1,74 @@
 import React, { useEffect } from 'react';
 import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
+import { UPDATE_EVENTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../utils/queries';
+import { QUERY_EVENTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
-function ProductList() {
+function EventList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_EVENTS);
 
   useEffect(() => {
     if (data) {
       dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
+        type: UPDATE_EVENTS,
+        eventss: data.events,
       });
-      data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
+      data.events.forEach((event) => {
+        idbPromise('events', 'put', event);
       });
     } else if (!loading) {
-      idbPromise('products', 'get').then((products) => {
+      idbPromise('events', 'get').then((events) => {
         dispatch({
-          type: UPDATE_PRODUCTS,
-          products: products,
+          type: UPDATE_EVENTS,
+          events: events,
         });
       });
     }
   }, [data, loading, dispatch]);
 
-  function filterProducts() {
+  function filterEvents() {
     if (!currentCategory) {
-      return state.products;
+      return state.events;
     }
 
-    return state.products.filter(
-      (product) => product.category._id === currentCategory
+    return state.events.filter(
+      (event) => event.category._id === currentCategory
     );
   }
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
-      {state.products.length ? (
+      <h2>Art Events:</h2>
+      {state.events.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
+          {filterEvents().map((event) => (
             <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
+              key={event._id}
+              _id={event._id}
+              imageLink={event.imageLink}
+              name={event.name}
+              date={event.date}
+              description={event.description}
+              locationName={event.locationName}
+              locationAddress={event.locationAddress}
+              category={event.category}
+              link={event.link}
             />
           ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>You haven't added any events yet!</h3>
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
   );
 }
 
-export default ProductList;
+export default EventList;
