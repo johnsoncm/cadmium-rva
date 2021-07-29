@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Event, Category, List } = require('../models');
 const { signToken } = require('../utils/auth');
 
 //HIDE
@@ -10,7 +10,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+    events: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -22,51 +22,67 @@ const resolvers = {
           $regex: name
         };
       }
+      // If name refers to event name (title) vs. category name
+    // events: async (parent, { category, title }) => {
+    //     const params = {};
+  
+    //     if (category) {
+    //       params.category = category;
+    //     }
+  
+    //     if (title) {
+    //       params.title = {
+    //         $regex: title
+    //       };
+    //     }
 
-      return await Product.find(params).populate('category');
+      return await Event.find(params).populate('category');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
+    event: async (parent, { _id }) => {
+      return await Event.findById(_id).populate('category');
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'lists.events',
           populate: 'category'
         });
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.lists.sort((a, b) => b.savedDate - a.savedDate);
 
         return user;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again');
     },
-    order: async (parent, { _id }, context) => {
+    list: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'lists.events',
           populate: 'category'
         });
 
-        return user.orders.id(_id);
+        return user.lists.id(_id);
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
+    // Is this where we would have stuff to then email, print, or share on social? Or should that be in the corresponding front-end file (Cart.js?). 
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const list = new List({ events: args.events });
       const line_items = [];
 
-      const { products } = await order.populate('products').execPopulate();
+      const { events } = await list.populate('events').execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+      for (let i = 0; i < events.length; i++) {
+        const event = await stripe.events.create({
+          name: event[i].name,
+          description: events[i].description,
+          images: [`${url}/images/${events[i].image}`]
         });
+
+
 
         const price = await stripe.prices.create({
           product: product.id,
@@ -98,41 +114,42 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addList: async (parent, { events }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const list = new List({ events });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+        await User.findByIdAndUpdate(context.user._id, { $push: { lists: list } });
 
-        return order;
+        return list;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
+    // We could use this for removing an event?
+    updateEvent: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Event.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect login credentials. Please try again.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect login credentials. Please try again.');
       }
 
       const token = signToken(user);

@@ -14,6 +14,15 @@ db.once('open', async () => {
     { name: 'Sunday' }
   ]);
 
+  // Do we want to have these as parts of the Events? Or should these be the categories?
+  // const eventType = [
+  //   { key: "g", text: "Gallery/Museum Opening", value: "gallery/museum opening" },
+  //   { key: "a", text: "Artist Talk", value: "artist talk" },
+  //   { key: "o", text: "Open Studios", value: "open studios" },
+  //   { key: "f", text: "Film Screening", value: "film screening" },
+  //   { key: "p", text: "Performance", value: "performance" },
+  // ];
+
   console.log('Categories successfully seeded!');
 
   await Event.deleteMany();
@@ -28,10 +37,12 @@ db.once('open', async () => {
       category: categories[4]._id,
       // startDate: '6pm',
       // endDate: '8pm',
-      date: '2021-08-06',
+      // time: '6:00 pm',
+      // date: '2021-08-06',
+      date: 'Aug 6, 2021 6:00 pm', 
       link: 'https://www.eventbrite.com/e/rhythm-on-the-river-tickets-154611911389?aff=ebdssbdestsearch',
       locationName: 'Virginia Museum of Fine Arts',
-      locationAddress: '200 North Arthur Ashe Boulevard, Richmond, VA 23220'
+      locationAddress: '200 North Arthur Ashe Boulevard, Richmond, VA 23220',
     },
     {
       name: 'Richmond RVA Exotic Paintings: BYOB Paint & Sip',
@@ -42,7 +53,9 @@ db.once('open', async () => {
       // multiple dates, different times for different dates
       // startDate: '8pm',
       // endDate: '9:30pm',
-      date: '2021-08-14',
+      // time: '8:00 pm',
+      // date: '2021-08-14',
+      date: 'Aug 14, 2021 8:00 pm', 
       link: 'https://www.eventbrite.com/e/richmond-rva-exotic-paintings-byob-paint-sip-tickets-52795985213?aff=ebdssbdestsearch',
       locationName: 'Venue 065',
       locationAddress: '3056 Hull Street, Richmond, VA 23224'
@@ -56,7 +69,9 @@ db.once('open', async () => {
       // Dates: May 1, 2021 - September 1, 2021
       // startDate: '5pm',
       // endDate: '7pm',
-      date: '2021-08-27',
+      // time: '5:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 5:00 pm', 
       link: 'https://www.ashlandvirginia.com/fourthfridays',
       locationName: 'Downtown Ashland, Virginia',
       locationAddress: '108 Robinson Street, Ashland, VA 23005'
@@ -69,7 +84,9 @@ db.once('open', async () => {
       image: 'chuck-scalin.jpg',
       // startDate: '5pm',
       // endDate: '7pm',
-      date: '2021-08-06',
+      // time: '5:00 pm',
+      // date: '2021-08-06',
+      date: 'Aug 6, 2021 5:00 pm', 
       link: 'https://thehighpointrichmond.com/',
       locationName: 'The Highpoint',
       locationAddress: '3300 West Broad Street, Richmond, VA 23230'
@@ -83,7 +100,9 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '9pm',
-      date: '2021-09-17',
+      // time: '6:00 pm',
+      // date: '2021-09-17',
+      date: 'Sept 17, 2021 6:00 pm', 
       link: 'https://www.crossroadsartcenter.com/pages/exhibitions',
       locationName: 'Crossroads Art Center',
       locationAddress: '2016 Staples Mill Rd, Richmond, VA 23230'
@@ -97,7 +116,9 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '9pm',
-      date: '2021-11-19',
+      // time: '6:00 pm',
+      // date: '2021-11-19',
+      date: 'Nov 11, 2021 6:00 pm', 
       link: 'https://www.crossroadsartcenter.com/pages/exhibitions',
       locationName: 'Crossroads Art Center',
       locationAddress: '2016 Staples Mill Rd, Richmond, VA 23230'
@@ -111,7 +132,9 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '8pm',
-      date: '2021-08-27',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
       link: 'https://artworksrva.com/blog/events/4th-friday-art-shows-08-27-2021/',
       locationName: 'Art Works',
       locationAddress: '320 Hull St, Richmond, VA 23224'
@@ -125,8 +148,11 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '8pm',
-      date: '2021-08-27',
-      link: 'https://artworksrva.com/blog/events/james-river-renderings/', locationName: 'Art Works',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
+      link: 'https://artworksrva.com/blog/events/james-river-renderings/', 
+      locationName: 'Art Works',
       locationAddress: '320 Hull St, Richmond, VA 23224'
     },
     {
@@ -138,7 +164,9 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '8pm',
-      date: '2021-08-27',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
       link: 'https://artworksrva.com/blog/events/heidi-nunnally/',
       locationName: 'Art Works',
       locationAddress: '320 Hull St, Richmond, VA 23224'
@@ -151,7 +179,9 @@ db.once('open', async () => {
       image: 'camera.jpg',
       // startDate: '6pm',
       // endDate: '8pm',
-      date: '2021-08-27',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
       link: 'https://artworksrva.com/blog/events/cathy-cazares-2/',
       locationName: 'Art Works',
       locationAddress: '320 Hull St, Richmond, VA 23224'
