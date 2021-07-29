@@ -56,17 +56,7 @@ const EventForm = () => {
               <div>
                    <h3>Add An Art Event!</h3>
                    <h2>Found a new art event? Share here for others to view!</h2>
-                   {/* {Auth.loggedIn() ? (
-                       <>
-                       <form
-                       className="flex-row justify-center justify-space-beetween-md align-center"
-                        onSubmit={handleFormSubmit}
-                        >
-                             
-      
-     
-                   </form>
-                   )}; */}
+           
                   
              </div>
 

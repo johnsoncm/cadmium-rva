@@ -151,7 +151,8 @@ db.once('open', async () => {
       // time: '6:00 pm',
       // date: '2021-08-27',
       date: 'Aug 27, 2021 6:00 pm', 
-      link: 'https://artworksrva.com/blog/events/james-river-renderings/', locationName: 'Art Works',
+      link: 'https://artworksrva.com/blog/events/james-river-renderings/', 
+      locationName: 'Art Works',
       locationAddress: '320 Hull St, Richmond, VA 23224'
     },
     {
