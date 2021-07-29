@@ -6,17 +6,12 @@ const defaultImage = '../client/public/images/cadmium-images/cadmiumCircle.png';
 
 const eventSchema = new Schema({
   date: {
-    // timestamp includes date?
+    // timestamp includes date and time
+    // make sure it works with datepicker casey added in EventForm
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
     required: true
-  },
-  time: {
-    // UPDATE to correct format - maybe do something similar to Date?
-    // Actually, might not need - timestamp should show date and time down to the millisecond
-    // type: DataTypes.TIME,
-    // defaultValue: DataTypes.NOW,
   },
   name: {
     type: String,
