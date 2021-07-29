@@ -5,6 +5,8 @@ const { Schema } = mongoose;
 const defaultImage = '../client/public/images/cadmium-images/cadmiumCircle.png';
 
 const eventSchema = new Schema({
+  // EventForm's dateFormat="MMMM d, yyyy h:mm aa"
+
   date: {
     // timestamp includes date and time
     // make sure it works with datepicker casey added in EventForm

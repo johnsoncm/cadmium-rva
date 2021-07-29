@@ -10,7 +10,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+    events: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -22,6 +22,19 @@ const resolvers = {
           $regex: name
         };
       }
+      // If name refers to event name (title) vs. category name
+    // events: async (parent, { category, title }) => {
+    //     const params = {};
+  
+    //     if (category) {
+    //       params.category = category;
+    //     }
+  
+    //     if (title) {
+    //       params.title = {
+    //         $regex: title
+    //       };
+    //     }
 
       return await Event.find(params).populate('category');
     },
@@ -35,12 +48,12 @@ const resolvers = {
           populate: 'category'
         });
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.lists.sort((a, b) => b.savedDate - a.savedDate);
 
         return user;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again');
     },
     list: async (parent, { _id }, context) => {
       if (context.user) {
@@ -49,11 +62,12 @@ const resolvers = {
           populate: 'category'
         });
 
-        return user.orders.id(_id);
+        return user.lists.id(_id);
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
+    // Is this where we would have stuff to then email, print, or share on social? Or should that be in the corresponding front-end file (Cart.js?). 
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const list = new List({ events: args.events });
@@ -67,17 +81,19 @@ const resolvers = {
           description: events[i].description,
           images: [`${url}/images/${events[i].image}`]
         });
-// stopped here with changing order to list and products to events
-        // const price = await stripe.prices.create({
-        //   product: product.id,
-        //   unit_amount: products[i].price * 100,
-        //   currency: 'usd',
-        // });
 
-        // line_items.push({
-        //   price: price.id,
-        //   quantity: 1
-        // });
+
+
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: 'usd',
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
       }
 
       const session = await stripe.checkout.sessions.create({
@@ -98,41 +114,42 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { events }, context) => {
+    addList: async (parent, { events }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const list = new List({ events });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+        await User.findByIdAndUpdate(context.user._id, { $push: { lists: list } });
 
-        return order;
+        return list;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('User not logged in. Please log in to your account and try again.');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
+    // We could use this for removing an event?
+    updateEvent: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Event.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect login credentials. Please try again.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect login credentials. Please try again.');
       }
 
       const token = signToken(user);
