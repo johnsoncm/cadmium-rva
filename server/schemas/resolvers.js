@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Event, Category, List } = require('../models');
 const { signToken } = require('../utils/auth');
 
 //HIDE
@@ -23,15 +23,15 @@ const resolvers = {
         };
       }
 
-      return await Product.find(params).populate('category');
+      return await Event.find(params).populate('category');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
+    event: async (parent, { _id }) => {
+      return await Event.findById(_id).populate('category');
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'lists.events',
           populate: 'category'
         });
 
@@ -42,10 +42,10 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    order: async (parent, { _id }, context) => {
+    list: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'lists.events',
           populate: 'category'
         });
 
@@ -56,28 +56,28 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const list = new List({ events: args.events });
       const line_items = [];
 
-      const { products } = await order.populate('products').execPopulate();
+      const { events } = await list.populate('events').execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+      for (let i = 0; i < events.length; i++) {
+        const event = await stripe.events.create({
+          name: event[i].name,
+          description: events[i].description,
+          images: [`${url}/images/${events[i].image}`]
         });
+// stopped here with changing order to list and products to events
+        // const price = await stripe.prices.create({
+        //   product: product.id,
+        //   unit_amount: products[i].price * 100,
+        //   currency: 'usd',
+        // });
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
+        // line_items.push({
+        //   price: price.id,
+        //   quantity: 1
+        // });
       }
 
       const session = await stripe.checkout.sessions.create({
@@ -98,7 +98,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, { events }, context) => {
       console.log(context);
       if (context.user) {
         const order = new Order({ products });

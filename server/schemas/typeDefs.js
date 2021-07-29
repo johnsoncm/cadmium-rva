@@ -13,6 +13,7 @@ const typeDefs = gql`
     description: String
     locationName: String!
     locationAddress: String!
+    time: String!
     date: String!
     image: String
     link: String
