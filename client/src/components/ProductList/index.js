@@ -42,7 +42,7 @@ function EventList() {
       (event) => event.category._id === currentCategory
     );
   }
-
+    console.log(state.events)
   return (
     <div className="my-2">
       <h2>Art Events:</h2>
