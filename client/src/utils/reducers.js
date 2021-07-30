@@ -5,6 +5,7 @@ import {
   // UPDATE_CART_QUANTITY,
   // REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_LIST,
+  QUERY_EVENTS,
   // UPDATE_CATEGORIES,
   // UPDATE_CURRENT_CATEGORY,
   // CLEAR_CART,
@@ -14,6 +15,11 @@ import {
 export const reducer = (state, action) => {
   switch (action.type) {
     case UPDATE_EVENTS:
+      return {
+        ...state,
+        events: [...action.events],
+      };
+    case QUERY_EVENTS:
       return {
         ...state,
         events: [...action.events],
