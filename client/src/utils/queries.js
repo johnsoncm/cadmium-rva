@@ -7,17 +7,19 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_EVENTS = gql`
-query getEvents($name: ID) {
-  events(name: $name) {
+query getEvents() {
+  events() {
     _id
     name
     date
     description
     locationName
     link
-    category
+    category {
+      _id
+    }
     locationAddress
-    imageLink
+    image
   }
 }
 
@@ -27,17 +29,21 @@ query getEvents($name: ID) {
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
-      orders {
+      username
+      lists {
         _id
-        purchaseDate
-        products {
+        savedDate
+        events {
           _id
-          name
+          title
+          date
           description
-          price
-          quantity
+          locationName
+          locationAddress
+          category {
+            _id
+          }
+          link
           image
         }
       }

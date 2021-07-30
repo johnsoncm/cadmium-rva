@@ -45,7 +45,8 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    events(category: ID, name: String): [Event]
+    events: Event
+    # events(category: ID, name: String): [Event]
     event(_id: ID!): Event
     user: User
     list(_id: ID!): List
@@ -59,6 +60,7 @@ const typeDefs = gql`
     updateEvent(username: String, email: String, password: String): User
     updateList(_id: ID!): Event
     login(email: String!, password: String!): Auth
+    updateUser(username: String!, email: String!, password: String!): Auth
   }
 `;
 

@@ -10,18 +10,18 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    events: async (parent, { category, name }) => {
+    events: async (parent) => {
       const params = {};
 
-      if (category) {
-        params.category = category;
-      }
+      // if (category) {
+      //   params.category = category;
+      // }
 
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
+      // if (name) {
+      //   params.name = {
+      //     $regex: name
+      //   };
+      // }
       // If name refers to event name (title) vs. category name
     // events: async (parent, { category, title }) => {
     //     const params = {};

@@ -7,41 +7,49 @@ import { QUERY_EVENTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
+
+
 function EventList() {
   const [state, dispatch] = useStoreContext();
+
+  // console.log(state);
 
   const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_EVENTS);
-
-  useEffect(() => {
-    if (data) {
-      dispatch({
-        type: UPDATE_EVENTS,
-        eventss: data.events,
-      });
-      data.events.forEach((event) => {
-        idbPromise('events', 'put', event);
-      });
-    } else if (!loading) {
-      idbPromise('events', 'get').then((events) => {
-        dispatch({
-          type: UPDATE_EVENTS,
-          events: events,
-        });
-      });
-    }
-  }, [data, loading, dispatch]);
+console.log('hi', data);
+  // useEffect(() => {
+  //   if (data) {
+  //     dispatch({
+  //       type: UPDATE_EVENTS,
+  //       events: data.events,
+  //     });
+  //     data.events.forEach((event) => {
+  //       idbPromise('events', 'put', event);
+  //     });
+  //   } else if (!loading) {
+  //     idbPromise('events', 'get').then((events) => {
+  //       dispatch({
+  //         type: UPDATE_EVENTS,
+  //         events: events,
+  //       });
+  //     });
+  //   }
+  // }, [data, loading, dispatch]);
 
   function filterEvents() {
     if (!currentCategory) {
       return state.events;
+
     }
 
     return state.events.filter(
+        console.log(state.events),
+
       (event) => event.category._id === currentCategory
     );
   }
+  // console.log(state.events);
 
   return (
     <div className="my-2">

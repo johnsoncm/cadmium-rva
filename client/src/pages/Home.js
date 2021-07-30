@@ -22,12 +22,13 @@ const Home = () => {
       <img src={Image} alt="logo"/>
 
       <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+      <Link to="/login">← Go to Login</Link>
 
       <h2>Login</h2>
       </div>
       <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
+      <Link to="/signup">← Go to Signup</Link>
+
 
       <h2>Signup</h2>
       </div>

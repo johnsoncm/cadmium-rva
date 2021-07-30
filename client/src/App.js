@@ -80,7 +80,7 @@ function App() {
                   <Map />
                 </WithAuth>
               </Route>
-              <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/events/:id" component={Detail} />
               <Route exact path="/eventForm" component={FormExampleFieldControl}/>
                
                                
