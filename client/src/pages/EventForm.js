@@ -12,7 +12,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import datePicker from "../utils/helpers";
+// import datePicker from "../utils/helpers";
 
 const options = [
   { key: "g", text: "Gallery/Museum Opening", value: "gallery/museum opening" },
@@ -24,17 +24,24 @@ const options = [
 
 function FormExampleFieldControl() {
   const [dateValue, setDateValue] = useState("");
-
+  const [formState, setFormState] = useState({});
+  const handleChange = (e)=> {
+    
+  }
   return (
     <div className="form-container">
       <Form>
         <Form.Group widths="equal">
           <Form.Field
+            onChange={(e) => {
+              console.log(e.target.value);
+            }}
             control={Input}
             label="Event Name"
             placeholder="Event Name"
           />
           <Form.Field
+          
             control={Input}
             label="Location Name"
             placeholder="Location Name"
@@ -54,11 +61,12 @@ function FormExampleFieldControl() {
           />
           <Form.Input
             label="Address 2"
-            placeholder="Building, Suite or Apt. Number"
+            // placeholder="Building, Suite or Apt. Number"
             width={8}
           />
           <Form.Input label="City" placeholder="City" width={8} />
           <Form.Input label="State" placeholder="State" width={8} />
+          <Form.Input label="Zip" placeholder="Zip" width={8} />
         </Form.Group>
         <Form.Group>
           <Form.Field>
@@ -94,28 +102,3 @@ function FormExampleFieldControl() {
 }
 
 export default FormExampleFieldControl;
-
-// import React from "react";
-// import ProductList from "../components/ProductList";
-// import CategoryMenu from "../components/CategoryMenu";
-// import Cart from "../components/Cart";
-// import Image from '../images/cadmium-images/logo.png'
-
-// const styles = {
-//   backgroundStyle:{
-//     backgroundImage: ''
-//   }
-// }
-
-// const Home = () => {
-//   return (
-//     <div className="container">
-//       {/* <CategoryMenu />
-//       <ProductList />
-//       <Cart /> */}
-
-//     </div>
-//   );
-// };
-
-// export default Home;

@@ -10,145 +10,181 @@ db.once('open', async () => {
     { name: 'Wednesday' },
     { name: 'Thursday' },
     { name: 'Friday' },
-    { name: 'Thursday' },
-    { name: 'Friday' }
+    { name: 'Saturday' },
+    { name: 'Sunday' }
   ]);
+
+  // Do we want to have these as parts of the Events? Or should these be the categories?
+  // const eventType = [
+  //   { key: "g", text: "Gallery/Museum Opening", value: "gallery/museum opening" },
+  //   { key: "a", text: "Artist Talk", value: "artist talk" },
+  //   { key: "o", text: "Open Studios", value: "open studios" },
+  //   { key: "f", text: "Film Screening", value: "film screening" },
+  //   { key: "p", text: "Performance", value: "performance" },
+  // ];
 
   console.log('Categories successfully seeded!');
 
   await Event.deleteMany();
 
   const events = await Event.insertMany([
+    // need to change images? these are the images on the webiste - assuming copyright
     {
-      name: 'Tin of Cookies',
+      name: 'Rhythm on the River',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'A celebration of the arts in the VMFA Sculpture Garden, featuring live performances (music & spoken word) and visual artists.',
+      image: 'rhythm-on-the-river.jpg',
+      category: categories[4]._id,
+      // startDate: '6pm',
+      // endDate: '8pm',
+      // time: '6:00 pm',
+      // date: '2021-08-06',
+      date: 'Aug 6, 2021 6:00 pm', 
+      link: 'https://www.eventbrite.com/e/rhythm-on-the-river-tickets-154611911389?aff=ebdssbdestsearch',
+      locationName: 'Virginia Museum of Fine Arts',
+      locationAddress: '200 North Arthur Ashe Boulevard, Richmond, VA 23220',
     },
     {
-      name: 'Canned Coffee',
+      name: 'Richmond RVA Exotic Paintings: BYOB Paint & Sip',
       description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[0]._id,
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        "Instructional painting event with live models. BYOB. Tickets sold for $35, includes 8x10 canvas, painting supplies, and instructor's guidance",
+      image: 'exotic-painting.jpeg',
+      category: categories[5]._id,
+      // multiple dates, different times for different dates
+      // startDate: '8pm',
+      // endDate: '9:30pm',
+      // time: '8:00 pm',
+      // date: '2021-08-14',
+      date: 'Aug 14, 2021 8:00 pm', 
+      link: 'https://www.eventbrite.com/e/richmond-rva-exotic-paintings-byob-paint-sip-tickets-52795985213?aff=ebdssbdestsearch',
+      locationName: 'Venue 065',
+      locationAddress: '3056 Hull Street, Richmond, VA 23224'
     },
     {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
+      name: 'Asland Fourth Fridays',
+      category: categories[4]._id,
       description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'Exhibits the work of jewelers, painters, designers, entertainers, chefs, farmers, and musicians',
+      image: 'ashland-fourth-fridays.jpeg',
+      // Dates: May 1, 2021 - September 1, 2021
+      // startDate: '5pm',
+      // endDate: '7pm',
+      // time: '5:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 5:00 pm', 
+      link: 'https://www.ashlandvirginia.com/fourthfridays',
+      locationName: 'Downtown Ashland, Virginia',
+      locationAddress: '108 Robinson Street, Ashland, VA 23005'
     },
     {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
+      name: 'Meet the Artist - Artist Talk - Chuck Scalin',
+      category: categories[4]._id,
       description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'Works spanning 5 decades, 1971-2021, by Chuck Scalin. Exhibition open July 10th through August 27th 2021',
+      image: 'chuck-scalin.jpg',
+      // startDate: '5pm',
+      // endDate: '7pm',
+      // time: '5:00 pm',
+      // date: '2021-08-06',
+      date: 'Aug 6, 2021 5:00 pm', 
+      link: 'https://thehighpointrichmond.com/',
+      locationName: 'The Highpoint',
+      locationAddress: '3300 West Broad Street, Richmond, VA 23230'
     },
     {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
+      name: 'All Media Show Fall Opening Reception',
+      category: categories[4]._id,
       description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
-    },
-    {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
+        'Art, food, music, bar, and more! Exhibit runs September 17, 2021 to November 7, 2021. $12 per piece for non-members, $9 for members',
+      // NO IMAGE
       image: 'camera.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+      // startDate: '6pm',
+      // endDate: '9pm',
+      // time: '6:00 pm',
+      // date: '2021-09-17',
+      date: 'Sept 17, 2021 6:00 pm', 
+      link: 'https://www.crossroadsartcenter.com/pages/exhibitions',
+      locationName: 'Crossroads Art Center',
+      locationAddress: '2016 Staples Mill Rd, Richmond, VA 23230'
     },
     {
-      name: 'Tablet',
-      category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
-    },
-    {
-      name: 'Tales at Bedtime',
-      category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
-    },
-    {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
-    },
-    {
-      name: 'Set of Plastic Horses',
+      name: 'All Media Show Winter Opening Reception',
       category: categories[4]._id,
       description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'Art, food, music, bar, and more! Exhibit runs November 17, 2021 to January 9, 2022. $12 per piece for non-members, $9 for members',
+      // NO IMAGE
+      image: 'camera.jpg',
+      // startDate: '6pm',
+      // endDate: '9pm',
+      // time: '6:00 pm',
+      // date: '2021-11-19',
+      date: 'Nov 11, 2021 6:00 pm', 
+      link: 'https://www.crossroadsartcenter.com/pages/exhibitions',
+      locationName: 'Crossroads Art Center',
+      locationAddress: '2016 Staples Mill Rd, Richmond, VA 23230'
     },
     {
-      name: 'Teddy Bear',
+      name: '4th Friday Art Shows - Dog Days of Summer Fundraiser',
       category: categories[4]._id,
       description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'Opening of several exhibits: James River Renderings 2021, Death of an Iceberg, and . Dogs welcome, donations go to local animal shelters. Exhibits run through September 18, 2021',
+      // NO IMAGE
+      image: 'camera.jpg',
+      // startDate: '6pm',
+      // endDate: '8pm',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
+      link: 'https://artworksrva.com/blog/events/4th-friday-art-shows-08-27-2021/',
+      locationName: 'Art Works',
+      locationAddress: '320 Hull St, Richmond, VA 23224'
     },
     {
-      name: 'Alphabet Blocks',
+      name: 'James River Renderings 2021 - Exhibit Opening',
       category: categories[4]._id,
       description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      date: '2021-05-22',
-      link: 'typing',
-      locationName: 'typing',
-      locationAddress: 'typing'
+        'Opening of James River Renderings 2021. Exhibit runs through September 18, 2021',
+      // NO IMAGE
+      image: 'camera.jpg',
+      // startDate: '6pm',
+      // endDate: '8pm',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
+      link: 'https://artworksrva.com/blog/events/james-river-renderings/', 
+      locationName: 'Art Works',
+      locationAddress: '320 Hull St, Richmond, VA 23224'
+    },
+    {
+      name: 'Death of an Iceberg - Exhibit Opening',
+      category: categories[4]._id,
+      description:
+        "Opening of Heidi Nunnally's photography exhibit, which follows the path of an iceberg along the arctic currents. Exhibit runs through September 18, 2021",
+      // NO IMAGE
+      image: 'camera.jpg',
+      // startDate: '6pm',
+      // endDate: '8pm',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
+      link: 'https://artworksrva.com/blog/events/heidi-nunnally/',
+      locationName: 'Art Works',
+      locationAddress: '320 Hull St, Richmond, VA 23224'
+    },
+    {
+      name: 'Faces and City Lights - Exhibit Opening',
+      category: categories[4]._id,
+      description: "Opening of Cathy Cazares's exhibit, which includes photography, transfers, and pastels. Exhibit runs through September 18, 2021",
+      // NO IMAGE
+      image: 'camera.jpg',
+      // startDate: '6pm',
+      // endDate: '8pm',
+      // time: '6:00 pm',
+      // date: '2021-08-27',
+      date: 'Aug 27, 2021 6:00 pm', 
+      link: 'https://artworksrva.com/blog/events/cathy-cazares-2/',
+      locationName: 'Art Works',
+      locationAddress: '320 Hull St, Richmond, VA 23224'
     }
   ]);
 
@@ -173,7 +209,7 @@ db.once('open', async () => {
       password: "password12345",
       events: [
         {
-          events: [events[2]._id, events[3]._id]
+          events: [events[2]._id, events[3]._id, events[8]._id]
         }
       ]
     },
@@ -183,7 +219,7 @@ db.once('open', async () => {
       password: "password12345",
       events: [
         {
-          events: [events[4]._id]
+          events: [events[4]._id, events[5]._id, events[7]._id]
         }
       ]
     },
@@ -191,11 +227,21 @@ db.once('open', async () => {
       username: "Seth",
       email: "seth@gmail.com",
       password: "password12345",
+      events: [
+        {
+          events: [events[5]._id]
+        }
+      ]
     },
     {
       username: "Erick",
       email: "erick@gmail.com",
-      password: "password12345"
+      password: "password12345",
+      events: [
+        {
+          events: [events[6]._id]
+        }
+      ]
     }
   ]);
 

@@ -2,7 +2,51 @@
 //need to think through checkout/categories and how to convert/adapt or delete
 //user query and model should be fine
 
+//queries are the GET (Read only fetch)
+
 import { gql } from '@apollo/client';
+
+export const QUERY_EVENTS = gql`
+query getEvents($name: ID) {
+  events(name: $name) {
+    _id
+    name
+    date
+    description
+    locationName
+    link
+    category
+    locationAddress
+    imageLink
+  }
+}
+
+`
+
+
+export const QUERY_USER = gql`
+  {
+    user {
+      firstName
+      lastName
+      orders {
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          price
+          quantity
+          image
+        }
+      }
+    }
+  }
+`;
+
+//dont need from here down
+
 
 export const QUERY_PRODUCTS = gql`
   query getProducts($category: ID) {
@@ -48,27 +92,6 @@ export const QUERY_CATEGORIES = gql`
     categories {
       _id
       name
-    }
-  }
-`;
-
-export const QUERY_USER = gql`
-  {
-    user {
-      firstName
-      lastName
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
-      }
     }
   }
 `;
