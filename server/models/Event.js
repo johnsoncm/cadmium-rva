@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const defaultImage = '../client/public/images/cadmium-images/cadmiumCircle.png';
+const defaultImage = "../client/public/images/cadmium-images/cadmiumCircle.png";
 
 const eventSchema = new Schema({
   // EventForm's dateFormat="MMMM d, yyyy h:mm aa"
@@ -13,15 +13,15 @@ const eventSchema = new Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
-    required: true
+    required: true,
   },
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   description: {
-    type: String
+    type: String,
   },
   locationName: {
     type: String,
@@ -34,23 +34,23 @@ const eventSchema = new Schema({
 
   image: {
     type: String,
-    default: defaultImage
+    default: defaultImage,
   },
   link: {
-    type: String
+    type: String,
   },
   // Person who added event
   contributor: {
     type: String,
-    required: false
+    required: false,
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true
-  }
+    ref: "Category",
+    required: true,
+  },
 });
 
-const Event = mongoose.model('Event', eventSchema);
+const Event = mongoose.model("Events", eventSchema);
 
 module.exports = Event;

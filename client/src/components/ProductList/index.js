@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import ProductItem from '../ProductItem';
-import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_EVENTS } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { QUERY_EVENTS } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import React, { useEffect } from "react";
+import ProductItem from "../ProductItem";
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_EVENTS } from "../../utils/actions";
+import { useQuery } from "@apollo/client";
+import { QUERY_EVENTS } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+import spinner from "../../assets/spinner.gif";
 
 function EventList() {
   const [state, dispatch] = useStoreContext();
@@ -14,24 +14,25 @@ function EventList() {
 
   const { loading, data } = useQuery(QUERY_EVENTS);
 
-  useEffect(() => {
-    if (data) {
-      dispatch({
-        type: UPDATE_EVENTS,
-        eventss: data.events,
-      });
-      data.events.forEach((event) => {
-        idbPromise('events', 'put', event);
-      });
-    } else if (!loading) {
-      idbPromise('events', 'get').then((events) => {
-        dispatch({
-          type: UPDATE_EVENTS,
-          events: events,
-        });
-      });
-    }
-  }, [data, loading, dispatch]);
+  console.log('data', data)
+  // useEffect(() => {
+  //   if (data) {
+  //     dispatch({
+  //       type: UPDATE_EVENTS,
+  //       events: data.events,
+  //     });
+  //     data.events.forEach((event) => {
+  //       idbPromise("events", "put", event);
+  //     });
+  //   } else if (!loading) {
+  //     idbPromise("events", "get").then((events) => {
+  //       dispatch({
+  //         type: UPDATE_EVENTS,
+  //         events: events,
+  //       });
+  //     });
+  //   }
+  // }, [data, loading, dispatch]);
 
   function filterEvents() {
     if (!currentCategory) {
@@ -42,6 +43,7 @@ function EventList() {
       (event) => event.category._id === currentCategory
     );
   }
+  console.log("my events", state.events);
 
   return (
     <div className="my-2">
