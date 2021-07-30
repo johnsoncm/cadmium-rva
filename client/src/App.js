@@ -20,6 +20,7 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Map from './components/Map/Map';
+import background from '../src/images/GalleryImage2.jpg'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,6 +59,7 @@ function App() {
               <Route exact path="/eventForm" component={FormExampleFieldControl} />
               <Route component={NoMatch} />
             </Switch>
+            <img className="background" src={background} alt="background..." />
           </StoreProvider>
         </div>
       </Router>

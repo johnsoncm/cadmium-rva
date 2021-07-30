@@ -10,6 +10,8 @@ function Map() {
     longitude: -77.434769,
     zoom: 12
   });
+  
+  console.log(process.env);
 
   return (
     <ReactMapGL
