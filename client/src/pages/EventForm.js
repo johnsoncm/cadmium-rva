@@ -13,6 +13,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
+const styles = {
+  titleStyle: {
+    textAlign: "center",
+    fontFamily: "Rajdhani",
+    fontSize: "50px",
+  },
+  listStyle: {
+    listStyleType: "none",
+  },
+};
+
 // import datePicker from "../utils/helpers";
 
 const options = [
@@ -22,8 +33,6 @@ const options = [
   { key: "f", text: "Film Screening", value: "film screening" },
   { key: "p", text: "Performance", value: "performance" },
 ];
-
-
 
 function FormExampleFieldControl() {
   const [dateValue, setDateValue] = useState("");
@@ -38,9 +47,31 @@ function FormExampleFieldControl() {
     }));
   };
   console.log(formState);
-  
+
+  //   const handleFormSubmit = async (e) => {
+  //     e.preventDefault();
+
+  //     try{
+  //       const { d } = await addEventListener( {
+  //         variables: {
+  //           name,
+  //           locationName,
+  //           locationAddress,
+  //           description,
+  //           link,
+  //         },
+  //       });
+
+  //     } catch (err) {
+  //       console.log(err)
+  //   }
+  // }
   return (
+
     <div className="form-container">
+      
+      <h1 style={styles.titleStyle}>Add Your Art Event Here!</h1>
+
       <Form>
         <Form.Group widths="equal">
           <Form.Field
@@ -137,11 +168,14 @@ function FormExampleFieldControl() {
         </Form.Group>
         <Form.Group>
           <Form.Input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="link" 
-                label="Link" placeholder="Link" width={12} />
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            name="link"
+            label="Link"
+            placeholder="Link"
+            width={12}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Input
@@ -163,8 +197,9 @@ function FormExampleFieldControl() {
           label="Event Description"
           placeholder="Tell us more about your event..."
         />
-             <Form.Field
-        control={Button} type="submit">Submit</Form.Field>
+        <Form.Field control={Button} type="submit">
+          Submit
+        </Form.Field>
       </Form>
     </div>
   );

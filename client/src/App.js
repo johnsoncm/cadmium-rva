@@ -81,8 +81,14 @@ function App() {
                 </WithAuth>
               </Route>
               <Route exact path="/products/:id" component={Detail} />
-              <Route exact path="/eventForm" component={FormExampleFieldControl}/>
-               
+              <Route exact path="/event-form" component={FormExampleFieldControl}/>
+               <Route exact path="/events">
+                 <WithAuth>
+                   <EventList/>
+                 </WithAuth>
+
+
+               </Route>
                                
                 {/* <WithAuth>
                   <FormExampleFieldControl/>
@@ -90,7 +96,7 @@ function App() {
 
               {/* <Route exact path="/events" component={EventList} /> */}
  
-              <Route exact path="/events" component={EventList}/>
+              {/* <Route exact path="/events" component={EventList}/> */}
                 {/* <EventList/> */}
                 <Route component={NoMatch} />
         
