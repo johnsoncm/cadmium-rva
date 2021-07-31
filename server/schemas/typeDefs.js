@@ -15,7 +15,7 @@ const typeDefs = gql`
     locationAddress: String!
     # time: String!
     date: String!
-    image: String
+    imageLink: String
     link: String
     # type: String
     category: Category

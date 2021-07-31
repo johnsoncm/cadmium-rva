@@ -13,6 +13,7 @@ const resolvers = {
     events: async (parent) => {
       const params = {};
 
+
       // if (name) {
       //   params.name = {
       //     $regex: name,

@@ -14,9 +14,11 @@ mutation addEvent($name: String!) {
     description
     locationName
     link
-    category
+    category {
+      _id
+    }
     locationAddress
-    imageLink
+    image
     
   }
 }
