@@ -7,22 +7,24 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_EVENTS = gql`
-  {
-    events {
-      name
-    }
+ {
+  events {
+    _id
+    name
+    description
+    locationName
+    link
+    locationAddress
+   
+   
   }
+}
+
 `;
 
-// _id
-// name
-// date
-// description
-// locationName
-// link
 // category
-// locationAddress
 // imageLink
+// date
 
 export const QUERY_USER = gql`
   {
