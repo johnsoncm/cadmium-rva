@@ -48,19 +48,19 @@ function FormExampleFieldControl() {
   };
   console.log(formState);
 
-  //   const handleFormSubmit = async (e) => {
-  //     e.preventDefault();
+    // const handleFormSubmit = async (e) => {
+    //   e.preventDefault();
 
-  //     try{
-  //       const { d } = await addEventListener( {
-  //         variables: {
-  //           name,
-  //           locationName,
-  //           locationAddress,
-  //           description,
-  //           link,
-  //         },
-  //       });
+    //   try{
+    //     const { d } = await addEventListener( {
+    //       variables: {
+    //        name: formState.name,
+    //         locationName: formState.locationName,
+    //         locationAddress: formState.locationAddress,
+    //         description: formState.description,
+    //         link: formState.link,
+    //       },
+    //     });
 
   //     } catch (err) {
   //       console.log(err)
