@@ -14,13 +14,9 @@ export const QUERY_EVENTS = gql`
     name
     description
     locationName
-    locationAddress
     link
-    # category {
-    #   _id
-    # }
-    # imageLink
-    # date
+    locationAddress
+
   }
 }
 

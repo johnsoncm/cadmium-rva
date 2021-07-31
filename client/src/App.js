@@ -1,38 +1,45 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
+
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import 'semantic-ui-css/semantic.min.css';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import "semantic-ui-css/semantic.min.css";
 
-import Home from './pages/Home';
-import FormExampleFieldControl from './pages/EventForm';
-import Detail from './pages/Detail';
+import Home from "./pages/Home";
+import FormExampleFieldControl from "./pages/EventForm";
+import Detail from "./pages/Detail";
+import NoMatch from "./pages/NoMatch";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Nav from "./components/Nav";
+import { StoreProvider } from "./utils/GlobalState";
+import Success from "./pages/Success";
+import OrderHistory from "./pages/OrderHistory";
+import Map from "./components/Map/Map";
+import background from "../src/images/GalleryImage2.jpg";
 import EventList from "./components/ProductList/index";
-import NoMatch from './pages/NoMatch';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
-import Map from './components/Map/Map';
-import background from '../src/images/GalleryImage2.jpg'
+
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -71,18 +78,21 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/map" component={Map} />
+
               {/* <WithAuth>
                 <Map />
               </WithAuth> */}
               <Route exact path="/products/:id" component={Detail} />
 
-              <Route exact path="/event-form" component={FormExampleFieldControl} />
-              <Route exact path="/events">
-                <WithAuth>
+              <Route
+                exact
+                path="/event-form"
+                component={FormExampleFieldControl}
+              />
+              <Route exact path="/events" component={EventList}>
+                {/* <WithAuth>
                   <EventList />
-                </WithAuth>
-
-
+                </WithAuth> */}
               </Route>
 
               {/* <WithAuth>
@@ -94,9 +104,8 @@ function App() {
               {/* <Route exact path="/events" component={EventList}/> */}
               {/* <EventList/> */}
               <Route component={NoMatch} />
-
             </Switch>
-            <img className="background" src={background} alt="background..." />
+            {/* <img className="background" src={background} alt="background..." /> */}
           </StoreProvider>
         </div>
       </Router>

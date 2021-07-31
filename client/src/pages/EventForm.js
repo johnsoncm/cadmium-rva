@@ -54,7 +54,6 @@ function FormExampleFieldControl() {
     }));
   };
   console.log(formState);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 

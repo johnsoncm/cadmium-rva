@@ -25,13 +25,7 @@ export const reducer = (state, action) => {
         events: [...action.events],
       };
 
-    case QUERY_EVENTS:
-      return {
-        ...state,
-        events: [...action.events],
-      };
-
-    case ADD_TO_LIST:
+      case ADD_TO_LIST:
       return {
         ...state,
         listOpen: true,
