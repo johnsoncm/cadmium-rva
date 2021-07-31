@@ -56,8 +56,26 @@ function App() {
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/map" component={Map} />
               <Route exact path="/products/:id" component={Detail} />
-              <Route exact path="/eventForm" component={FormExampleFieldControl} />
-              <Route component={NoMatch} />
+
+              <Route exact path="/event-form" component={FormExampleFieldControl}/>
+               <Route exact path="/events">
+                 <WithAuth>
+                   <EventList/>
+                 </WithAuth>
+
+
+               </Route>
+                               
+                {/* <WithAuth>
+                  <FormExampleFieldControl/>
+                </WithAuth> */}
+
+              {/* <Route exact path="/events" component={EventList} /> */}
+ 
+              {/* <Route exact path="/events" component={EventList}/> */}
+                {/* <EventList/> */}
+                <Route component={NoMatch} />
+        
             </Switch>
             <img className="background" src={background} alt="background..." />
           </StoreProvider>

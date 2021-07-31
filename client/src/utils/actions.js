@@ -1,5 +1,6 @@
 export const UPDATE_EVENTS = "UPDATE_EVENTS";
 
+export const QUERY_EVENTS = "QUERY_EVENTS";
 export const ADD_TO_LIST = "ADD_TO_LIST"; 
 export const ADD_MULTIPLE_TO_LIST = "ADD_MULTIPLE_TO_LIST"; 
 export const REMOVE_FROM_CART = "REMOVE_FROM_LIST"; //maybe we don't need this? users shouldn't be allowed to delete.
