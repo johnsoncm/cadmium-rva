@@ -31,18 +31,12 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-
-  image: {
+  imageLink: {
     type: String,
     default: defaultImage
   },
   link: {
     type: String
-  },
-  // Person who added event
-  contributor: {
-    type: String,
-    required: false
   },
   category: {
     type: Schema.Types.ObjectId,
