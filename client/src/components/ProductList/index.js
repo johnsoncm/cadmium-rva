@@ -1,81 +1,90 @@
-import React, { useEffect } from 'react';
-import ProductItem from '../ProductItem';
-import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_EVENTS } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { QUERY_EVENTS } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import React, { useEffect } from "react";
+import ProductItem from "../ProductItem";
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_EVENTS } from "../../utils/actions";
+import { useQuery } from "@apollo/client";
+import { QUERY_EVENTS } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+import spinner from "../../assets/spinner.gif";
+import { Card, CardContent, CardHeader, CardMeta, Icon, Image} from 'semantic-ui-react';
+import image from "../../images/cadmium-images/logo.png"
+
+// const CardExampleCard = () => {
+//   return(
+//   <Card>  
+//     <CardContent>
+//       <CardHeader>Event 1</CardHeader>
+//       <CardMeta>
+//         <span>description</span>
+//       </CardMeta>
+//     </CardContent>
 
 
+//   </Card>
+//   )
+
+// }
+
+const styles = {
+  headerStyle: {
+    textAlign: "center",
+    fontFamily: "Rajdhani",
+    fontSize: "50px"
+  },
+  listStyle: {
+    listStyleType: "none",
+ 
+
+  },
+  cardStyle: {
+    display: "flex",
+    justifyContent: "center"
+  }
+};
 
 function EventList() {
   const [state, dispatch] = useStoreContext();
-
-  // console.log(state);
-
   const { currentCategory } = state;
+  const { loading, data: events } = useQuery(QUERY_EVENTS);
 
-  const { loading, data } = useQuery(QUERY_EVENTS);
-console.log('hi', data);
-  // useEffect(() => {
-  //   if (data) {
-  //     dispatch({
-  //       type: UPDATE_EVENTS,
-  //       events: data.events,
-  //     });
-  //     data.events.forEach((event) => {
-  //       idbPromise('events', 'put', event);
-  //     });
-  //   } else if (!loading) {
-  //     idbPromise('events', 'get').then((events) => {
-  //       dispatch({
-  //         type: UPDATE_EVENTS,
-  //         events: events,
-  //       });
-  //     });
-  //   }
-  // }, [data, loading, dispatch]);
-
-  function filterEvents() {
-    if (!currentCategory) {
-      return state.events;
-
-    }
-
-    return state.events.filter(
-        console.log(state.events),
-
-      (event) => event.category._id === currentCategory
-    );
-  }
-  // console.log(state.events);
+  console.log("data", events);
 
   return (
     <div className="my-2">
-      <h2>Art Events:</h2>
-      {state.events.length ? (
-        <div className="flex-row">
-          {filterEvents().map((event) => (
-            <ProductItem
-              key={event._id}
-              _id={event._id}
-              imageLink={event.imageLink}
-              name={event.name}
-              date={event.date}
-              description={event.description}
-              locationName={event.locationName}
-              locationAddress={event.locationAddress}
-              category={event.category}
-              link={event.link}
-            />
-          ))}
-        </div>
+      <h2 style={styles.headerStyle}>Check out these upcoming events!</h2>
+      {events ? (
+        events.events.map(
+          ({
+            description,
+            name,
+            locationAddress,
+            locationName,
+            link,
+            
+            
+                     }) => (
+             <Card style={styles.cardStyle}>
+               {/* <Card.Img src={image}></Card.Img> */}
+            <ul style={styles.listStyle}>
+              <li>{name}</li>
+              <li>{description}</li>
+              <li>{locationName}</li>
+              <li>{locationAddress}</li>
+              <li>{link}</li>
+              
+          
+            </ul>
+            </Card>
+        
+          )
+        )
       ) : (
-        <h3>You haven't added any events yet!</h3>
+        <h3> You haven't added any events yet!</h3>
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
+
+
   );
 }
 

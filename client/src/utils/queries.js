@@ -4,15 +4,14 @@
 
 //queries are the GET (Read only fetch)
 
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_EVENTS = gql`
-# query getEvents() 
-{
+
+ {
   events {
     _id
     name
-    date
     description
     locationName
     link
@@ -24,8 +23,11 @@ export const QUERY_EVENTS = gql`
   }
 }
 
-`
+`;
 
+// category
+// imageLink
+// date
 
 export const QUERY_USER = gql`
   {
@@ -53,7 +55,6 @@ export const QUERY_USER = gql`
 `;
 
 //dont need from here down
-
 
 export const QUERY_PRODUCTS = gql`
   query getProducts($category: ID) {
