@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { useMutation } from '@apollo/client';
+// import Auth from '../utils/auth';
+import { ADD_EVENT } from '../utils/mutations';
+
+
 import {
   Button,
   Checkbox,
@@ -37,6 +42,8 @@ const options = [
 function FormExampleFieldControl() {
   const [dateValue, setDateValue] = useState("");
   const [formState, setFormState] = useState({});
+  const [addEvent] = useMutation(ADD_EVENT);
+
   const handleChange = (e) => {
     console.log(e.target.name);
     const { name, value } = e.target;
@@ -48,31 +55,34 @@ function FormExampleFieldControl() {
   };
   console.log(formState);
 
-  //   const handleFormSubmit = async (e) => {
-  //     e.preventDefault();
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-  //     try{
-  //       const { d } = await addEventListener( {
-  //         variables: {
-  //           name,
-  //           locationName,
-  //           locationAddress,
-  //           description,
-  //           link,
-  //         },
-  //       });
+    try {
+      const mutationResponse = await addEvent({
+        variables: {
+          name: formState.name,
+          locationName: formState.locationName,
+          locationAddress: formState.locationAddress,
+          description: formState.description,
+          link: formState.link,
+          // date: formState.date,
+          // imageLink: formState.imageLink,
+          // category: formState.category,
+        },
+      });
 
-  //     } catch (err) {
-  //       console.log(err)
-  //   }
-  // }
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
 
     <div className="form-container">
-      
+
       <h1 style={styles.titleStyle}>Add Your Art Event Here!</h1>
 
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
         <Form.Group widths="equal">
           <Form.Field
             onChange={(e) => {
