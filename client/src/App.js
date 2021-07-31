@@ -5,6 +5,7 @@ import {
   Switch,
   useHistory,
 } from "react-router-dom";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -27,6 +28,7 @@ import OrderHistory from "./pages/OrderHistory";
 import Map from "./components/Map/Map";
 import background from "../src/images/GalleryImage2.jpg";
 import EventList from "./components/ProductList/index";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -76,7 +78,10 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/map" component={Map} />
-        
+
+              {/* <WithAuth>
+                <Map />
+              </WithAuth> */}
               <Route exact path="/products/:id" component={Detail} />
 
               <Route
