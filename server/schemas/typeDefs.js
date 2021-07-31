@@ -49,17 +49,20 @@ const typeDefs = gql`
     event(_id: ID!): Event
     user: User
     list(_id: ID!): List
-    # we don't need checkout with money but maybe we can still play with this
+    # we don't need checkout with money but this is our saved events?
     checkout(events: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addList(events: [ID]!): List
-    updateEvent(username: String, email: String, password: String): User
-    updateList(_id: ID!): Event
-    login(email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): Auth
+    # could be used for removing event (originally for changing quantity of product)
+    deleteEvent(_id: ID!, quantity: Int!): Event
+    # updateList(_id: ID!): Event
+    login(email: String!, password: String!): Auth
+    # not sure what this should be but it will be related to adding an event with the event form?
+    addEvent(name: String!): Event
   }
 `;
 
