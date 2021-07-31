@@ -19,7 +19,6 @@ export const QUERY_EVENTS = gql`
       _id
     }
     locationAddress
-    image
   }
 }
 

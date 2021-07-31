@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Home from './pages/Home';
 import FormExampleFieldControl from './pages/EventForm';
 import Detail from './pages/Detail';
+import EventList from "./components/ProductList/index";
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -70,9 +71,9 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/map" component={Map} />
-              <WithAuth>
+              {/* <WithAuth>
                 <Map />
-              </WithAuth>
+              </WithAuth> */}
               <Route exact path="/products/:id" component={Detail} />
 
               <Route exact path="/event-form" component={FormExampleFieldControl} />
