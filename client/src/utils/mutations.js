@@ -10,15 +10,10 @@ export const ADD_EVENT = gql`
     addEvent(name: $name) {
       _id
       name
-      date
       description
       locationName
       link
-      category {
-        _id
-      }
       locationAddress
-      image
     }
   }
 `;
