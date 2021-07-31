@@ -13,6 +13,7 @@ const resolvers = {
     events: async (parent) => {
       const params = {};
 
+
       // if (name) {
       //   params.name = {
       //     $regex: name,
@@ -142,7 +143,7 @@ const resolvers = {
       );
     },
     // We could use this for removing an event?
-    updateEvent: async (parent, { _id, quantity }) => {
+    deleteEvent: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
       return await Event.findByIdAndUpdate(
@@ -151,6 +152,7 @@ const resolvers = {
         { new: true }
       );
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -171,6 +173,25 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    // I don't think this is correct, but it's a starting point?
+    addEvent: async (parent, {events}, context) => {
+      console.log(context);
+
+      if (context.user) {
+        const event = new Event({event});
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: {events: event},
+        });
+
+        return event;
+      };
+
+      throw new AuthenticationError(
+        "User not logged in. Please log in to your account and try again."
+      );
     },
   },
 };

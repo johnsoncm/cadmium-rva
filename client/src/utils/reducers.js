@@ -1,11 +1,11 @@
 import { useReducer } from "react";
 import {
+  QUERY_EVENTS,
   UPDATE_EVENTS,
   ADD_TO_LIST,
   // UPDATE_CART_QUANTITY,
   // REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_LIST,
-  QUERY_EVENTS,
   // UPDATE_CATEGORIES,
   // UPDATE_CURRENT_CATEGORY,
   // CLEAR_CART,
@@ -25,7 +25,7 @@ export const reducer = (state, action) => {
         events: [...action.events],
       };
 
-    case ADD_TO_LIST:
+      case ADD_TO_LIST:
       return {
         ...state,
         listOpen: true,
@@ -37,6 +37,8 @@ export const reducer = (state, action) => {
         ...state,
         list: [...state.list, ...action.events],
       };
+
+
 
     // case UPDATE_CART_QUANTITY:
     //   return {

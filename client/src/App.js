@@ -5,6 +5,7 @@ import {
   Switch,
   useHistory,
 } from "react-router-dom";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -16,7 +17,6 @@ import "semantic-ui-css/semantic.min.css";
 
 import Home from "./pages/Home";
 import FormExampleFieldControl from "./pages/EventForm";
-import EventList from "./components/ProductList";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
@@ -26,6 +26,9 @@ import { StoreProvider } from "./utils/GlobalState";
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
 import Map from "./components/Map/Map";
+import background from "../src/images/GalleryImage2.jpg";
+import EventList from "./components/ProductList/index";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -66,41 +69,43 @@ function App() {
         <div>
           <StoreProvider>
             <WithAuth>
-            <Nav />
+              <Nav />
             </WithAuth>
             <Switch>
-         
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
-              <Route exact path="/map">
-                <WithAuth>
-                  <Map />
-                </WithAuth>
-              </Route>
+              <Route exact path="/map" component={Map} />
+
+              {/* <WithAuth>
+                <Map />
+              </WithAuth> */}
               <Route exact path="/products/:id" component={Detail} />
-              <Route exact path="/event-form" component={FormExampleFieldControl}/>
-               <Route exact path="/events">
-                 <WithAuth>
-                   <EventList/>
-                 </WithAuth>
 
-
-               </Route>
-                               
+              <Route
+                exact
+                path="/event-form"
+                component={FormExampleFieldControl}
+              />
+              <Route exact path="/events" component={EventList}>
                 {/* <WithAuth>
+                  <EventList />
+                </WithAuth> */}
+              </Route>
+
+              {/* <WithAuth>
                   <FormExampleFieldControl/>
                 </WithAuth> */}
 
               {/* <Route exact path="/events" component={EventList} /> */}
- 
+
               {/* <Route exact path="/events" component={EventList}/> */}
-                {/* <EventList/> */}
-                <Route component={NoMatch} />
-        
+              {/* <EventList/> */}
+              <Route component={NoMatch} />
             </Switch>
+            {/* <img className="background" src={background} alt="background..." /> */}
           </StoreProvider>
         </div>
       </Router>
