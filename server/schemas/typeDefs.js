@@ -57,16 +57,12 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addList(events: [ID]!): List
     updateUser(username: String!, email: String!, password: String!): Auth
-<<<<<<< HEAD
     # could be used for removing event (originally for changing quantity of product)
     deleteEvent(_id: ID!, quantity: Int!): Event
     # updateList(_id: ID!): Event
     login(email: String!, password: String!): Auth
     # not sure what this should be but it will be related to adding an event with the event form?
     addEvent(name: String!): Event
-=======
-  
->>>>>>> main
   }
 `;
 
