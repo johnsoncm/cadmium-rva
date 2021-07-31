@@ -46,7 +46,7 @@ function FormExampleFieldControl() {
       [name]: value,
     }));
   };
-  console.log(formState);
+  console.log("hi", formState);
 
   //   const handleFormSubmit = async (e) => {
   //     e.preventDefault();
