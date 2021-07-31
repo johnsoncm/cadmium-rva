@@ -41,13 +41,28 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const WithAuth = ({ children }) => {
+  const history = useHistory();
+  const isLoggedIn = true;
+  // localStorage.getItem('id_token'); //here you would check for the token
+  if (!isLoggedIn) {
+    history.push("/login");
+    return <div>You are not authorized to view this page.</div>;
+    // above we are returning a div about authendictaion but we could also redirect them to the login page with history.push
+    //redirect to home page useHistory react dom push address to /login or /
+  }
+  return children;
+};
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
           <StoreProvider>
-            <Nav />
+            <WithAuth>
+              <Nav />
+            </WithAuth>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -55,27 +70,30 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/map" component={Map} />
+              <WithAuth>
+                <Map />
+              </WithAuth>
               <Route exact path="/products/:id" component={Detail} />
 
-              <Route exact path="/event-form" component={FormExampleFieldControl}/>
-               <Route exact path="/events">
-                 <WithAuth>
-                   <EventList/>
-                 </WithAuth>
+              <Route exact path="/event-form" component={FormExampleFieldControl} />
+              <Route exact path="/events">
+                <WithAuth>
+                  <EventList />
+                </WithAuth>
 
 
-               </Route>
-                               
-                {/* <WithAuth>
+              </Route>
+
+              {/* <WithAuth>
                   <FormExampleFieldControl/>
                 </WithAuth> */}
 
               {/* <Route exact path="/events" component={EventList} /> */}
- 
+
               {/* <Route exact path="/events" component={EventList}/> */}
-                {/* <EventList/> */}
-                <Route component={NoMatch} />
-        
+              {/* <EventList/> */}
+              <Route component={NoMatch} />
+
             </Switch>
             <img className="background" src={background} alt="background..." />
           </StoreProvider>
