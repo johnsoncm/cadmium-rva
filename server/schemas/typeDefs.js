@@ -60,6 +60,7 @@ const typeDefs = gql`
     updateList(_id: ID!): Event
     login(email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): Auth
+  
   }
 `;
 

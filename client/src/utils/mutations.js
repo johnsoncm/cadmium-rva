@@ -6,24 +6,22 @@ import { gql } from "@apollo/client";
 //Add event, login, create user, delete event by id
 
 export const ADD_EVENT = gql`
-mutation addEvent($name: String!) {
-  addEvent(name: $name) {
-    _id
-    name
-    date
-    description
-    locationName
-    link
-    category {
+  mutation addEvent($name: String!) {
+    addEvent(name: $name) {
       _id
+      name
+      date
+      description
+      locationName
+      link
+      category {
+        _id
+      }
+      locationAddress
+      image
     }
-    locationAddress
-    image
-    
   }
-}
-
-`
+`;
 
 // export const DELETE_EVENT = gql`
 // mutation deleteEvent($name: String!) {
@@ -44,18 +42,11 @@ export const LOGIN = gql`
   }
 `;
 
-
-
 export const ADD_USER = gql`
-  mutation addUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
-  ) {
+  mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(
-      firstName: $firstName
-      lastName: $lastName
+      username: $username
+
       email: $email
       password: $password
     ) {
@@ -66,7 +57,6 @@ export const ADD_USER = gql`
     }
   }
 `;
-
 
 // export const ADD_ORDER = gql`
 //   mutation addOrder($products: [ID]!) {
